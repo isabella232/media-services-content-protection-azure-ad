@@ -1,0 +1,567 @@
+{
+	"info": {
+		"_postman_id": "5c0eef39-5eb7-4aff-8c0d-1294a1e83225",
+		"name": "SRT Registry API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get authorization_code",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "84e3ce32-daa9-49c8-a5a4-d656bda94ea0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    var code = pm.request.url.query.get(\"code\");",
+							"    postman.setEnvironmentVariable(\"authorization_code\", code);",
+							"    console.log(code);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://lorentz-apimgmt.portal.azure-api.net/docs/services/lorentz-apimgmt-oauth20/console/oauth2/authorizationcode/callback?code=OAQABAAIAAAAm-06blBE1TpVMil8KPQ41hjeYuTugFS7RP52b70TA28vdz2b-wHdmxBC5wmWFk31WvcL4YYg6FQM-Cl2lFOhhD-_x7OOfhmAhJc3dnoegRH_m3e_Wtvlackv6hpZW9g1fe49QoMU_8SpsgGyT4HS8Y5rtLBl0uFPksWGp1XFEwbWYKXNuEyr8NpxlXzARudbQ5GgdQZG0lCKwNcy_MTxgX_Oc-rmCEY6QPqTNi3IYs3JRsz6KAIrlwfflBlXMUJG1ST9hr6T5aTqajyBLL_-q1mq_abpI8YnIO0phVTmXn-F5OpPzI8J9TcJXjubgJeEMRmrPdFMOCfjzYMgJIeMwc8GkQkjYCzdW5NheSD8ybbsQ443e5MfG85ysfWNcUybzkOozfGqfkkSCLpSiDwkAdbdcsYFw-3vnkV1-v_FvZrnEwqoBcs2Cuqe7oj2aSidxYaIV1zGZ6YXOs9kgglEHtFb_Fu7ASKkIN42h28--vymKeTyomK1U8wmfOmxv6ngUoQaEyzKxV9O7kcmsKF_yamwqWI4hXhWWxirRmSLkJo7DiChhgwp7w0hOViOxCA3WaeklukVpxhgfU9NWXPYRvi5hukZ2rlA-r5j-raTYHnU_XgXIR_NS5QDv3RN2C4VLj1zlsVObPFHBfAa6nxRBB-0uQW6745Fe9ACVsfmpZZsFmhcdUTdpBB9Nle5iNArbU9KtTa9BwJ22gokkDxalnpWzmr_2sq26u5yVl-aYeT9fyWf95FhHy0vJUTTj6bDBeYZpQZe8Fz9IuuGSrc4mxmnoqAfriSjBLtpteSHCLA863yEXB_HwFA1AJ7Zg-c30PfQZ9l21qqUvd4baX7l8dTeqhBwfwVaoXkdmnH6wEcEb5wsYL22-OYU4mAnMEZlrOIN27IADMkyrEPzpBjhPJhG5vAqLFhUTYjZ9EAo8kDTApSO_3AU8uCo1kD_Ze-8fHfgVkgjTAxc6aAihf7Q7lPFhzQMFthwa7aruf8fSBiO-xuC1og73qtwAGh38W5yhW4XrO624K_1ChaYJ3QjpIAA&state=12345&session_state=b959522b-02da-4841-a36e-b8c4fd757797",
+					"protocol": "https",
+					"host": [
+						"lorentz-apimgmt",
+						"portal",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"docs",
+						"services",
+						"lorentz-apimgmt-oauth20",
+						"console",
+						"oauth2",
+						"authorizationcode",
+						"callback"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "OAQABAAIAAAAm-06blBE1TpVMil8KPQ41hjeYuTugFS7RP52b70TA28vdz2b-wHdmxBC5wmWFk31WvcL4YYg6FQM-Cl2lFOhhD-_x7OOfhmAhJc3dnoegRH_m3e_Wtvlackv6hpZW9g1fe49QoMU_8SpsgGyT4HS8Y5rtLBl0uFPksWGp1XFEwbWYKXNuEyr8NpxlXzARudbQ5GgdQZG0lCKwNcy_MTxgX_Oc-rmCEY6QPqTNi3IYs3JRsz6KAIrlwfflBlXMUJG1ST9hr6T5aTqajyBLL_-q1mq_abpI8YnIO0phVTmXn-F5OpPzI8J9TcJXjubgJeEMRmrPdFMOCfjzYMgJIeMwc8GkQkjYCzdW5NheSD8ybbsQ443e5MfG85ysfWNcUybzkOozfGqfkkSCLpSiDwkAdbdcsYFw-3vnkV1-v_FvZrnEwqoBcs2Cuqe7oj2aSidxYaIV1zGZ6YXOs9kgglEHtFb_Fu7ASKkIN42h28--vymKeTyomK1U8wmfOmxv6ngUoQaEyzKxV9O7kcmsKF_yamwqWI4hXhWWxirRmSLkJo7DiChhgwp7w0hOViOxCA3WaeklukVpxhgfU9NWXPYRvi5hukZ2rlA-r5j-raTYHnU_XgXIR_NS5QDv3RN2C4VLj1zlsVObPFHBfAa6nxRBB-0uQW6745Fe9ACVsfmpZZsFmhcdUTdpBB9Nle5iNArbU9KtTa9BwJ22gokkDxalnpWzmr_2sq26u5yVl-aYeT9fyWf95FhHy0vJUTTj6bDBeYZpQZe8Fz9IuuGSrc4mxmnoqAfriSjBLtpteSHCLA863yEXB_HwFA1AJ7Zg-c30PfQZ9l21qqUvd4baX7l8dTeqhBwfwVaoXkdmnH6wEcEb5wsYL22-OYU4mAnMEZlrOIN27IADMkyrEPzpBjhPJhG5vAqLFhUTYjZ9EAo8kDTApSO_3AU8uCo1kD_Ze-8fHfgVkgjTAxc6aAihf7Q7lPFhzQMFthwa7aruf8fSBiO-xuC1og73qtwAGh38W5yhW4XrO624K_1ChaYJ3QjpIAA"
+						},
+						{
+							"key": "state",
+							"value": "12345"
+						},
+						{
+							"key": "session_state",
+							"value": "b959522b-02da-4841-a36e-b8c4fd757797"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get access_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e17ba5c6-f36b-4a51-b12f-05b9447d67aa",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    var json = JSON.parse(responseBody);",
+							"    postman.setEnvironmentVariable(\"access_token\", json.access_token);",
+							"    postman.setEnvironmentVariable(\"refresh_token\", json.refresh_token);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "186a52a9-77a4-4294-be3c-90ddaaaaeb21",
+						"exec": [
+							"var query = {};\r",
+							"var url = postman.getEnvironmentVariable(\"authorization_code_callback_url\");\r",
+							"url.query.all().forEach((param) => { query[param.key] = param.value});\r",
+							"postman.setEnvironmentVariable(\"authorization_code\", query[code]);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSIsImtpZCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSJ9.eyJhdWQiOiJhcGk6Ly83OWIwYzI1NC1mN2MyLTQ5ZGQtOWE0My05N2QxNTg3M2VhMWIiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC81MTY0MWM0MC1hZDY1LTQ3MzYtODhmYy0yZjBlMTAwNzJkODUvIiwiaWF0IjoxNTgzNzkyMTUzLCJuYmYiOjE1ODM3OTIxNTMsImV4cCI6MTU4Mzc5NjA1MywiYWNyIjoiMSIsImFpbyI6IkFYUUFpLzhPQUFBQTBnMGhjREhQVjJIei9GdXdvWklxU01IWGR0NmFrM1FVZGNZZDZ5R0tkeENiZWh5UGE5T09nRTJsN3MyUE0xVEU4Q0J2WHR0NlhQWnQ1eGg1NkVNa29oN0NuN3A0NFFRZk1EVjNvTEh2Z1JtZTM4aUl1N2RZMVE1ZSt2MGViL29wQWpNUUdXUzVQQ2hZaUkzM2h2RVk5QT09IiwiYW1yIjpbInJzYSJdLCJhcHBpZCI6Ijk0ODBiYTE1LWZkZjgtNDZjYS04NzQ1LTU5NTBlMWQ1NmIxNSIsImFwcGlkYWNyIjoiMSIsImVtYWlsIjoid2lsbHpoYW5AbWljcm9zb2Z0LmNvbSIsImZhbWlseV9uYW1lIjoiWmhhbmciLCJnaXZlbl9uYW1lIjoiV2lsbGlhbSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0LzcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0Ny8iLCJpcGFkZHIiOiI2Ny4xODYuNjkuMTgiLCJuYW1lIjoiV2lsbGlhbSBaaGFuZyAobWljcm9zb2Z0LmNvbSkiLCJvaWQiOiJjMDg2ZjRmNS1lNGYwLTRiZTAtOGZmNC0yOWZkMGJmNzA3NzIiLCJzY3AiOiJGaWxlcy5SZWFkIiwic3ViIjoiRnA2RGtIUVhHVFFCRUpodW94RVFBVFUtT1laTUxLRmtTUjc0MUFLRG1LTSIsInRpZCI6IjUxNjQxYzQwLWFkNjUtNDczNi04OGZjLTJmMGUxMDA3MmQ4NSIsInVuaXF1ZV9uYW1lIjoid2lsbHpoYW5AbWljcm9zb2Z0LmNvbSIsInV0aSI6InJVSVBaY01GN2t5d19vZk83aE8xQUEiLCJ2ZXIiOiIxLjAifQ.ASi8Vv13lTdB1e7AceIS070SjZhApWdQkDAKT934zQNbFz_Gcv5bDtZFWN4sbhXf1_4NBI1U7OlfPRjJJPv0l_gdCfZmmbFKf6fSNaYNUpDXPni0tMeMotfFNgHhp1hyEdsXuI441sv2wib7rq2xJ_EmRJ_gpRylNNwaFSxlqeML0Ka_iq-_zcj9Z-EaJxeQxFSdvuS5MGSemGzJdjKb3nTjmnzI_6LD03j5gss-1sn0AIfPdUOd48qwO3RMgNgxtl-cdKzvKyYO2JkDDYgSFiHoHStV-pJnjbChN-srFLHrg9ipeJr18Coad8LrTE_jMvKtsAHjhsNRErgIMWgxGQ",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "{{scope}}",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "{{authorization_code}}",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "{{redirect_uri}}",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "{{grant_type}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"type": "text"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://login.microsoftonline.com/willzhanad.onmicrosoft.com/oauth2/v2.0/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"microsoftonline",
+						"com"
+					],
+					"path": [
+						"willzhanad.onmicrosoft.com",
+						"oauth2",
+						"v2.0",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LIST-ALL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://lorentz-apimgmt.azure-api.net/nodes",
+					"protocol": "https",
+					"host": [
+						"lorentz-apimgmt",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"nodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LIST-filter/pagination/sort",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"url": {
+					"raw": "https://lorentz-apimgmt.azure-api.net/nodes?skip=0&limit=3&customMetadata.vendor=Avid&sort=nodeName:asc",
+					"protocol": "https",
+					"host": [
+						"lorentz-apimgmt",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"nodes"
+					],
+					"query": [
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "node_name",
+							"value": "test node 01",
+							"description": "filtering on static type in schema",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "customMetadata.vendor",
+							"value": "Avid"
+						},
+						{
+							"key": "sort",
+							"value": "nodeName:asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UPDATE (PUT) node",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nodeName\": \"Grass Valley test node 05 - Updated\",\n  \"nodeType\": \"hublet\",\n  \"nodeDescription\": \"testing schema v1\",\n  \"nodeStatus\": \"test status - complete\",\n  \"nodeMetadata\": \"certain types of node_metadata, but not arbitrary\",\n  \"customMetadata\": {\n  \t\t\"vendor\": \"Grass Valley\",\n  \t\t\"product\": \"SoftServe v 8.1\",\n  \t\t\"grass_valley_hubletConnector\": \"SRT-555555 - UPDATED\",\n  \t\t\"grass_valley_serial_number\": \"111\",\n  \t\t\"grass_valley_attribute\": \"GV-01\",\n  \t\t\"quantity\": 111,\n  \t\t\"volume\": 111\n  \t},\n  \t\"nodeTags\": {\n  \t\t\"tag0\": \"tag value 00\",\n  \t\t\"tag1\": \"tag value 01\"\n  \t},\n    \"updated_on\": \"{{current_time}}\"\n}"
+				},
+				"url": {
+					"raw": "https://lorentz-apimgmt.azure-api.net/nodes/5e6ae17c57a9c10050988658",
+					"protocol": "https",
+					"host": [
+						"lorentz-apimgmt",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"nodes",
+						"5e6ae17c57a9c10050988658"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE node",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "35584de8-59a1-4aa4-a0bd-33f6a2e8b075",
+						"exec": [
+							"var current_time = new Date();\r",
+							"postman.setEnvironmentVariable(\"current_time\", current_time.toISOString());"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nodeId\": \"{{$guid}}\",\n  \"nodeName\": \"Grass Valley test node 05\",\n  \"nodeType\": \"hublet\",\n  \"nodeDescription\": \"testing schema v1\",\n  \"nodeStatus\": \"test status - complete\",\n  \"nodeMetadata\": \"certain types of node_metadata, but not arbitrary\",\n  \"customMetadata\": {\n  \t\t\"vendor\": \"Grass Valley\",\n  \t\t\"product\": \"SoftServe v 8.1\",\n  \t\t\"grass_valley_hubletConnector\": \"SRT-555555\",\n  \t\t\"grass_valley_serial_number\": \"111\",\n  \t\t\"grass_valley_attribute\": \"GV-01\",\n  \t\t\"quantity\": 111,\n  \t\t\"volume\": 111\n  \t},\n  \t\"nodeTags\": {\n  \t\t\"tag0\": \"tag value 00\",\n  \t\t\"tag1\": \"tag value 01\"\n  \t},\n  \t\"createdOn\": \"{{current_time}}\",\n  \t\"updatedOn\": \"{{current_time}}\"\n}"
+				},
+				"url": {
+					"raw": "https://lorentz-apimgmt.azure-api.net/nodes",
+					"protocol": "https",
+					"host": [
+						"lorentz-apimgmt",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"nodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE node",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://lorentz-apimgmt.azure-api.net/nodes/5e729eafdc6dd714c4e2c42a",
+					"protocol": "https",
+					"host": [
+						"lorentz-apimgmt",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"nodes",
+						"5e729eafdc6dd714c4e2c42a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET node",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://lorentz-apimgmt.azure-api.net/nodes/ea979f2c-e295-49cb-9e31-0b3925f58954",
+					"protocol": "https",
+					"host": [
+						"lorentz-apimgmt",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"nodes",
+						"ea979f2c-e295-49cb-9e31-0b3925f58954"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOCAL-LIST-ALL",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nodes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOCAL-LIST-filter/pagination/sort",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nodes?custom_metadata.vendor=Avid&skip=0&limit=3&sort=node_name:asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nodes"
+					],
+					"query": [
+						{
+							"key": "custom_metadata.vendor",
+							"value": "Avid"
+						},
+						{
+							"key": "skip",
+							"value": "0"
+						},
+						{
+							"key": "limit",
+							"value": "3"
+						},
+						{
+							"key": "sort",
+							"value": "node_name:asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOCAL-CREATE",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "46c1a3d5-315e-4adb-8e42-a502cc031f24",
+						"exec": [
+							"var current_time = new Date();\r",
+							"postman.setEnvironmentVariable(\"current_time\", current_time.toISOString());\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5f141b68-f982-4576-80c4-0cc27a210d5e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nodeId\": \"{{$guid}}\",\n  \"nodeName\": \"Grass Valley test node 0555\",\n  \"nodeType\": \"hublet\",\n  \"nodeDescription\": \"testing schema v1\",\n  \"nodeStatus\": \"test status - complete\",\n  \"nodeMetadata\": \"certain types of node_metadata, but not arbitrary\",\n  \"customMetadata\": {\n  \t\t\"vendor\": \"Grass Valley\",\n  \t\t\"product\": \"SoftServe v 8.1\",\n  \t\t\"grass_valley_hubletConnector\": \"SRT-555\",\n  \t\t\"grass_valley_serial_number\": \"111\",\n  \t\t\"grass_valley_attribute\": \"GV-01\",\n  \t\t\"quantity\": 111,\n  \t\t\"volume\": 111\n  \t},\n  \t\"nodeTags\": {\n  \t\t\"tag0\": \"tag value 00\",\n  \t\t\"tag1\": \"tag value 01\"\n  \t},\n  \t\"createdOn\": \"{{current_time}}\",\n  \t\"updatedOn\": \"{{current_time}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/nodes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nodes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOCAL-DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nodes/5e729eecdc6dd714c4e2c42d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nodes",
+						"5e729eecdc6dd714c4e2c42d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOCAL-UPDATE (PUT)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"node_name\": \"GV test node 06\",\n  \"node_type\": \"hublet\",\n  \"description\": \"testing schema v1\",\n  \"node_status\": \"test status - complete\",\n  \"node_metadata\": \"certain types of node_metadata, but not arbitrary\",\n  \"custom_metadata\": {\n  \t\t\"vendor\": \"Grass Valley\",\n  \t\t\"product\": \"SoftServe v 8.1\",\n  \t\t\"AVID_hubletConnector\": \"SRT-555\",\n  \t\t\"quantity\": 111,\n  \t\t\"volume\": 111,\n  \t\t\"avid_serial_number\": \"111\"\n  \t},\n  \t\"created_on\": \"{{current_time}}\",\n  \t\"updated_on\": \"{{current_time}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/nodes/5e729d33dc6dd714c4e2c429",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nodes",
+						"5e729d33dc6dd714c4e2c429"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LOCAL-GET specific",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/nodes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"nodes",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>OAuth2 Test Tool</title>
+    <script type="text/javascript" src="https://alcdn.msauth.net/browser/2.0.0-beta.0/js/msal-browser.js"></script>
+    <script type="text/javascript" src="/javascript/constants.js"></script>
+    <script type="text/javascript" src="/javascript/api.js" defer></script>
+    <script type="text/javascript" src="/javascript/ams.js" ></script>
+    <script type="text/javascript" src="/javascript/oauth20.js"></script> 
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link href="//amp.azure.net/libs/amp/latest/skins/amp-default/azuremediaplayer.min.css" rel="stylesheet">
+    <script type="text/javascript" src="//amp.azure.net/libs/amp/latest/azuremediaplayer.min.js"></script>
+    <script type="text/javascript" src="/plugin/amp-frameRateTimecodeCalculator.js"></script> 
+    <script type="text/javascript" src="/plugin/amp.diagnoverlay.js"></script> 
+    <link rel="stylesheet" type="text/css" href="/css/amp.diagnoverlay.css">
+  </head>
+  <body>
+    <div class="verticalbar">
+      <a id="a_oauth20" href="javascript:toggleVisibility('div_oauth20');">JWT</a><br/>
+      <a id="a_api"     href="javascript:toggleVisibility('div_api');">API</a><br/>
+      <a id="a_image"   href="javascript:toggleVisibility('div_image');">IMG</a><br/>
+      <a id="a_test"    href="javascript:toggleVisibility('div_test');">Info</a><br/>
+      <a id="a_ams"     href="javascript:toggleVisibility('div_ams');">AMS</a><br/>
+    </div>
+    <span class="title">OAuth2 Test Tool</span>
+
+
+    <div id="div_oauth20">
+      <h4> Authentication, Token Acquisition &amp; Renewal</h4>
+      <div class="login_module"> 
+        &nbsp;&nbsp; 
+        Authorization Code Grant Flow with <span class="tooltip">PKCE<span class="tooltiptext">Proof Key for Code Exchange spec</span></span>    
+        | Microsoft Identity Platform (v2.0 endpoints) | <span class="tooltip">SPA<span class="tooltiptext"><ul><li>public client,</li><li>subject to browser sandbox,</li><li>subject to javascript security</li></ul></span><span></a>
+      </div>
+
+      <!--Login module-->
+      <div id="login_module" class="login_module">
+          <div class="login_strip">
+            <span id="user_name"></span>
+            <a href="javascript: IDP.login_out();" id="login_link">Login</a>
+            <input type="radio" name="api_type" id="popup" value="popup" checked ><label for="popup">Popup</label>
+            <input type="radio" name="api_type" id="redirect" value="redirect" ><label for="redirect"><span class="tooltip">Redirect<span class="tooltiptext">For browsers such as Safari on iOS or macOS</span></span></label>
+            <a href="javascript: STS.get_access_token();"   id="access_token_link" style="display: none;">acquire/renew access_token</a>
+            <input type="checkbox" id="cache_settings" name="cache_settings" checked onclick="javascript: MsalSettingsManager.cacheSettings_change();"> 
+            <label for="cache_settings"><span class="tooltip">Cache settings on client<span class="tooltiptext">Store MSAL settings in sessionStorage for convenience</span></span></label>
+            <input type="checkbox" id="display_settings" name="display_settings" checked onclick="javascript: MsalSettingsManager.show_hide_msal_settings();"> <label for="display_settings">Display OAuth2 settings</label>
+          </div>
+          <div id="msal_settings" class="msal_settings" >
+            <a href="javascript: MsalSettingsManager.show_hide_msal_settings();" class="close-icon"></a>
+            <table id="login_module_table" class="login_module_table">    
+              <tr><td>client_id: </td><td><input id="client_id" type="text" value ="" /></td></tr>
+              <tr><td>tenant_id: </td><td><input id="tenant_id" type="text" value ="" /></td></tr>
+              <tr><td>scope: <span class="info-icon"><a href="./info?topic=scope" target="_blank">&#x1F6C8;</a></span> 
+                  </td><td>
+                    <span class="tooltip">
+                      <input id="scope" type="text"  value ="" list="scope_list"/>
+                      <datalist id="scope_list"></datalist>
+                      <span class="tooltiptext">Clear textbox to dropdown for available scope options or enter your own</span>
+                    </span>
+                  </td></tr>
+              <tr><td>identity_provider: <span class="info-icon"><a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/msal-client-application-configuration#authority" target="_blank">&#x1F6C8;</a></span> </td>
+                  <td><input id="idp" type="text" value ="" /></td></tr>
+              <tr><td>redirect_uri: </td><td><input id="msal_redirect_uri" type="text"  value="" /></td></tr>
+            </table>
+          </div>
+          <div id="token_display" class="token" style="display: none;"></div>
+      </div>
+      
+    </div>
+
+
+    <div id="div_api">
+      <h4>Secure REST API Calls</h4>
+        <div class="info">
+
+        <table>
+          <tr><td>REST API: </td><td>
+            <select id="api" onchange="javascript: selectApi();">
+              <option value="method">Select a test case</option>          
+            </select>
+          </td></tr>
+          <tr><td>Method: </td><td><span id="api_method"></span></td></tr>
+          <tr><td>URL:    </td><td><input type="text" id="api_url" value=""></td></tr>
+          <tr><td>Body:   </td><td><textarea id="api_body" value="" class="api_body"></textarea></td></tr>
+          <tr><td>        </td><td><div id="api_info"></div></td></tr>
+          <tr><td>        </td><td><input id="call"  type="button" value="Call REST API"  onclick="javascript: call_api();" /></td></tr>
+          <tr><td><span class="tooltip">x-correlation-id
+            <span class="tooltiptext">Header set in request, allowed despite of CORS request.</span>
+          </span>: </td><td><span id="x_correlation_id" class="digital_display"></span></td></tr>
+          <tr><td><span class="tooltip">Correlation ID
+            <span class="tooltiptext">Custom header set in response, exposed to client despite of CORS request.</span>
+            </span>: </td><td><span id="correlation_id" class="digital_display"></span></td></tr>
+        </table>
+      </div>
+      <pre id="json" class="json" ></pre>
+    </div>
+
+
+    <div id="div_test">
+    <h4>Test Details</h4>
+    <div class="info">
+    <p>REST Service <a href="./img/lorentz_design_diagram.jpg" target="_blank">Design diagram</a></p>
+    <p>Identity Providers vs Secure Token Service vs Azure subscription for compute resources, end users vs IT ops users. 
+      <a href="./img/lorentz_design_tenant_app.jpg"  target="_blank">Design diagram</a>
+      <ul>
+        <li>Support accounts on <a href="https://docs.microsoft.com/en-us/azure/active-directory/develop/about-microsoft-identity-platform#microsoft-identity-platform-experience" taget="_blank">Microsoft identity platform v 2.0</a>;</li>
+        <li>Token issuer is independent of Azure subscription used</li>
+        <li>Application resources can be deployed to any subscription, independent of the choice of identity provider or token issuer</li>
+        <li>IT ops/devops tenant can be independent of end user tenants.</li>
+      </ul>
+    </p>
+    <p>REST service URI (dev environment): <a href="https://lorentz-apimgmt.azure-api.net/nodes" target="_blank">https://lorentz-apimgmt.azure-api.net/nodes</a></p>
+    <p>Postman <a href="postman/SRT%20Registry%20API.postman_collection.json" target="_blank">collection</a> and Postman <a href="postman/SRT%20Registry%20Collection%20Environment.postman_environment.json" target = "_blank">collection environment</a>. </p>
+    
+    <p>
+      <a id="get_authorization_code" href="javascript: authorize_redirect();">Get authorization_code</a> (Caution: Only for public client=no, replyUrlsWithType.type=Web. Currently it is configured as SPA, a public client)
+    </p>
+    <table> 
+      <tr><td>response_type:          </td><td><input id="response_type" type="text" value ="code" /></td></tr>
+      <tr><td>redirect_uri:           </td><td><input id="redirect_uri" type="text"  value="https://lorentz-apimgmt.portal.azure-api.net/docs/services/lorentz-apimgmt-oauth20/console/oauth2/authorizationcode/callback" /></td></tr>
+      <tr><td>response_mode:          </td><td><input id="response_mode" type="text"  value ="query" /></td></tr>          
+      <tr><td>tenant:                 </td><td><input id="tenant" type="text" value ="willzhanad.onmicrosoft.com" /></td></tr>       
+      <tr><td>authorization_endpoint: </td><td>https://login.microsoftonline.com/{tenant}/oauth2/v2.0/authorize</td></tr>
+      <tr><td>token_endpoint:         </td><td>https://login.microsoftonline.com/{tenant}/oauth2/v2.0/token</td></tr>
+      <tr><td>openid-configuration:   </td><td><a href="https://login.microsoftonline.com/common/.well-known/openid-configuration" target="_blank">https://login.microsoftonline.com/common/.well-known/openid-configuration</a></td></tr>
+      <tr><td>grant_type:             </td><td><a href="https://oauth.net/2/grant-types/authorization-code/" target="_blank">authorization_code</a></td></tr>
+    </table>
+    </div>
+    </div>
+
+
+    <div id="div_image">
+    <h4 class="info">Convert Image to Base64 String to Store</h4>
+    <div class="info">
+      <p> Note: this client assumes you store logo image in customMetadata.logo for display.</p>
+      <p><input type="file" onchange="encodeImageFileAsURL(this)" /></p>
+      <p><div id="image_display"></div></p>
+      <p><div id="image_base64" class="token"></div></p>
+    </div>
+    </div>
+
+
+    <div id="div_ams">
+      <h4 class="info"><a href="img/DRM_subsystem_building_blocks.jpg" target="_blank">License Delivery Service</a> | Azure Media Services</h4>
+      <div class="info">
+      <table>
+        <tr><td>URL: </td><td><input id="sourceUrl" name="sourceUrl" style="width: 992px;" type="text" /></td></tr>
+        <tr><td>Protection Type: </td><td><select id="protectionType" onchange="javascript: AMS.selectDrm();"></select></td></tr>
+        <tr><td>JWT:   </td><td><textarea id="jwt" value="" class="api_body"></textarea></td></tr>
+        <tr><td>FPS App Cert: </td><td><input id="appCert" type="text"> <a href="javascript:ACUtils.getAC();">Validate</a></td></tr>
+        <tr><td></td><td>
+            <div id="PopUp" class="appCert" onmouseover="document.getElementById('PopUp').style.display = 'none' ">
+                <span id="PopUpText">TEXT</span>
+            </div>
+        </td></tr>
+        <tr><td></td><td><input type="button" id="cmdPlay" value="Play" style="width:60px" onclick="javascript: AMS.play();" /> <span id="status" style="overflow-y:auto; height:30px" class="info"></span></td></tr>
+        <tr><td></td><td><video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered" tabindex="0"> </video></td></tr>
+      </table>
+      </div>
+    </div>
+   
+
+    <p style="padding-bottom: 16cm;"></p>
+    <footer><p>&copy; 2020 &nbsp;&nbsp;&nbsp;&nbsp;<br/>OAuth2.0 &nbsp;&nbsp;&nbsp;&nbsp;<br/>OIDC &nbsp;&nbsp;&nbsp;&nbsp;</p></footer>
+    
+  </body>
+</html>
