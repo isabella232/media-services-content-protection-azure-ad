@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Client Credential Flow</title>  
+    <style>
+        pre {
+           overflow-x: auto;
+           white-space: pre-wrap;
+           white-space: -moz-pre-wrap;
+           white-space: -pre-wrap;
+           white-space: -o-pre-wrap;
+           word-wrap: break-word;
+           width: 90%;
+        }
+        input[type=text] {
+        color: inherit;
+        opacity: 0.8;
+        cursor: default;
+        width: 900px;
+        height: 22px;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <h4>Access token thru client credential flow</h4>
+    <form action="/client_creds" method="POST">
+      <table width="90%">
+        <tr><td>token_endpoint:</td><td><input id="token_endpoint" type="text" name="token_endpoint" value=<%= client_creds_config.token_endpoint %>></td></tr>
+        <tr><td>client_id:</td><td><input id="client_id" type="text" name="client_id" value=<%= client_creds_config.client_id %>></td></tr>
+        <tr><td>client_secret:</td><td><input id="client_secret" type="text" name="client_secret" value=<%= client_creds_config.client_secret %>></td></tr>
+        <tr><td>grant_type:</td><td><input id="grant_type" type="text" name="grant_type" value=<%= client_creds_config.grant_type %>></td></tr>
+        <tr><td>scope:</td><td><input id="scope" type="text" name="scope" value=<%= client_creds_config.scope %>></td></tr>
+        <tr><td></td><td><input type="submit" value="POST"></td></tr>
+      </table>
+    </form>
+    <div>access_token:</div>
+    <pre id="access_token"><%= access_token %></pre>
+    <div><a href="./jwt?jwt=<%= access_token %>" target="_blank">parse</a></div>
+    <pre id="response_json"><%= response_json %></pre>
+  </body>
