@@ -113,10 +113,11 @@ In fact this sample is a generic OAuth2 test tool for testing a REST API secured
 
 **A:** All major browsers of recent versions: MS Edge, Chrome, Firefox, Opera, Safari. Different browsers support different DRM through EME, and you can only test the supported DRM in a browser. On Safari, you should use Redirect mode since it does not support popups.
 
-> [!NOTE]
-> IE11 on Windows 10 is not supported, for the following two reasons, both can be corrected if needed:
-> 1. ES 6 javascript is used in the SPA app and IE11 does not support ES 6;
-> 1. IE11 polypill for @azure/msal-browser SDK is not used in the SPA.
+**NOTE**
+
+IE11 on Windows 10 is not supported, for the following two reasons, both can be corrected if needed:
+ 1. ES 6 javascript is used in the SPA app and IE11 does not support ES 6;
+ 1. IE11 polypill for @azure/msal-browser SDK is not used in the SPA.
 
 **Q: Does it make any difference to this sample if the AMS streaming endpoint has CDN enabled or disabled?**
 
