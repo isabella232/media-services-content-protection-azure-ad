@@ -108,7 +108,7 @@ In fact this sample is a generic OAuth2 test tool for testing a REST API secured
 
 **Q: While this sample uses SPA (public client), may I replace it by a web application (confidential client)?**
 
-**A:** Yes, you can replace it with a web application on any platform (`ASP.NET` Core, Node.js, Python, etc.). You can just use Authorization Code Flow. PKCE would no be longer necessary (but is still recommended). You may choose to use a MSAL SDK for the development platform you use.
+**A:** Yes, you can replace it with a web application on any platform (`ASP.NET` Core, Node.js, Python, etc.). You can just use Authorization Code Flow. PKCE would no longer be necessary (but is still recommended). You may choose to use a MSAL SDK for the development platform you use.
 
 **Q: Is there a sample of web application instead of SPA, using AAD v1 instead of v2 endpoints?**
 
