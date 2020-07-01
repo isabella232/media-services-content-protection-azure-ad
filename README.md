@@ -73,9 +73,22 @@ In fact this sample is a generic OAuth2 test tool for testing a REST API secured
 
 **A:** After sign in, click on the **Parse** link next to the `access_token` or `id_token`. You should see the token content below the containing “ver”:
 
+```json
+"name": "Entitled User",
+"oid": <id of the user>,
+"preferred_username": <email of the entitled user you created>,
+"scp": "File.Read",
+"sub": <id>,
+"tid": <id>,
+"uti": <id>,
+"ver": 2.0
+}
+"signature": <signature>
+```
+
 **Q: While this document/sample uses AAD v2 endpoints (Microsoft Identity Platform), my customer is currently using AAD v1 endpoints in production and uses AAD v1 endpoints for their media solution. Are AAD v1 endpoints supported by this sample?**
 
-**A:** Yes. The only difference is the audience claim value in JWT issued by v1 endpoints is slightly different from those issued by v2 endpoints. All you need to do is to adjust the value accordingly in the audience inside `ContentKeyPolicyRestriction`. You can easily see the audience claim value (aud) by parsing such a v1 JWT token using a token parser such as `http://aka.ms/jwt`. To switch to a v1 JWT token, you should set the value of the attribute `accessTokenAcceptedVersion` to null in the manifest of the `LicenseDeliveryResource2` app.
+**A:** Yes. The only difference is the audience claim value in JWT issued by v1 endpoints is slightly different from those issued by v2 endpoints. All you need to do is to adjust the value accordingly in the audience inside `ContentKeyPolicyRestriction`. You can easily see the audience claim value (aud) by parsing such a v1 JWT token using a token parser such as `http://aka.ms/jwt`. To switch to a v1 JWT token, you should set the value of the attribute `accessTokenAcceptedVersion` to null in the manifest of the `LicenseDeliveryResource2` app. AMS license delivery supports both v1 and v2 JWT issued by Azure AD.
 
 **Q: Can I host the player app anywhere I choose, instead of being limited to the subscription attached to the AAD tenant I use?**
 
@@ -95,7 +108,7 @@ In fact this sample is a generic OAuth2 test tool for testing a REST API secured
 
 **Q: While this sample uses SPA (public client), may I replace it by a web application (confidential client)?**
 
-**A:** Yes, you can replace it with a web application on any platform (`ASP.NET` Core, Node.js, Python, etc.). You can just use Authorization Code Flow. PKCE would no longer necessary (but is still recommended). You may choose to use a MSAL SDK for the development platform you use.
+**A:** Yes, you can replace it with a web application on any platform (`ASP.NET` Core, Node.js, Python, etc.). You can just use Authorization Code Flow. PKCE would no longer be necessary (but is still recommended). You may choose to use a MSAL SDK for the development platform you use.
 
 **Q: Is there a sample of web application instead of SPA, using AAD v1 instead of v2 endpoints?**
 
@@ -133,8 +146,11 @@ IE11 on Windows 10 is not supported, for the following two reasons, both can be 
 
 **Q: Why is the sample player app called OAuth2 Test Tool (aka.ms/ott), instead of something like DRM Test Tool?**
 
-**A:** For modern apps, the most popular API type is REST and the most popular way to secure a REST API is OAuth 2.0. This sample player is actually a generic test tool for any REST API secured by OAuth 2 as long as it allows Authorization Code Flow. In addition, as an SPA app type, this test tool does not require or hide any secret such as `client_secret`. This is achieved by using the latest @azure/msal-browser v2.0 which leverages PKCE spec. As you can see on API tab, the tool currently allows you to test three secured REST APIs:
+**A:** For modern apps, the most popular API type is REST and the most popular way to secure a REST API is OAuth 2.0. This sample player is actually a generic test tool for any REST API secured by OAuth 2 as long as it allows Authorization Code Flow. In addition, as an SPA app type, this test tool does not require or hide any secret such as `client_secret`. This is achieved by using the latest @azure/msal-browser v2.0 which leverages PKCE spec. As you can see on API tab, the tool currently allows you to test secured REST APIs:
 
-1. A single-tenant custom REST API (secured via API API Management using OAuth 2.0)
-1. Microsoft Graph API (multi-tenant)
-1. AMS license delivery service API (multi-tenant)
+- A single-tenant custom REST API (secured via API API Management using OAuth 2.0)
+- Microsoft Graph API (multi-tenant)
+- AMS license delivery service API (multi-tenant)
+- Azure Storage REST API
+- Azure Key Vault REST API
+- Azure DevOps REST API
